@@ -1,3 +1,6 @@
+# this one isn't done, waiting for testing data from all the first iteration factchecks
+# aiming to automate the repetitive process of finding facts that do not change between iterations and pasting them into the next factcheck
+
 from textblob import TextBlob
 import xlrd
 import docx2txt
