@@ -1,15 +1,10 @@
 from textblob import TextBlob
 import xlrd
-import spacy
 import docx2txt
 import pandas as pd
-from stanza.server import CoreNLPClient
 import re
-import nltk
-import stanza
-from pycorenlp import *
 
-nlp = StanfordCoreNLP("http://localhost:9000/")
+
 
 # input word doc from your C:\Users drive
 article = input("Word document name: ")
@@ -19,7 +14,7 @@ nlpfacts = []
 # applying nlp library to the article
 processed = TextBlob(text)
 
-# parsing through the article to pull all sentences
+# parsing through the article to pull all facts
 for line in processed.sentences:
     if line != '':
         sent = re.sub(r"(\.|,|\?|\(|\)|\[|\])", " ", line.string)
