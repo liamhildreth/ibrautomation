@@ -4,10 +4,9 @@ import docx2txt
 import pandas as pd
 import re
 
-
-
 # input word doc from your C:\Users drive
-article = input("Word document name: ")
+article = input("Article name: ")
+iteration = input("Iteration #: ")
 text = docx2txt.process(str(article) + ".docx")
 nlpfacts = []
 
@@ -21,6 +20,8 @@ for line in processed.sentences:
         if sent != '' and sent != ' 'and len(sent)!=1:
             sent = sent.replace('\n',' ')
             sent = TextBlob(sent)
+            
+            # major point in the decision tree, arbitrarily selected 0.8 as the threshold for subjectivity. [0 is objecive: 1 is subjective]
             if sent.subjectivity <=0.8:
                 nlpfacts.append(sent)
 
@@ -30,4 +31,4 @@ df = pd.DataFrame()
 df['Facts']= nlpfacts
 
 # exporting sentences to pre-existing spreadsheet for each article
-df.to_excel(str(article) +'_Factcheck1.xlsx', index=False)
+df.to_excel(str(article) +'_Factcheck' + str(iteration)+'.xlsx', index=False)
